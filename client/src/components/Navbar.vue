@@ -14,12 +14,10 @@
         <div id="navbar" class="navbar-collapse collapse">
           <form class="navbar-form navbar-right">
             <div class="form-group">
-              <input type="text" placeholder="Email" class="form-control">
+              <input type="text" placeholder="search Thread" class="form-control">
             </div>
-            <div class="form-group">
-              <input type="password" placeholder="Password" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-success">Sign in</button>
+            <button type="submit" class="btn btn-success">Search</button>
+            <button @click='logout()' type="submit" class="btn btn-danger">Logout</button>
           </form>
         </div>
       </div>
@@ -28,7 +26,14 @@
 </template>
 
 <script type="text/javascript">
+// import Login from '@/components/Login'
   export default {
+    methods: {
+      logout () {
+        localStorage.clear()
+        this.$router.push('/')
+      }
+    }
   }
 </script>
 

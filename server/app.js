@@ -6,6 +6,7 @@ mongoose.connect('mongodb://localhost/hacktivoverflow');
 
 //All Dependencies
 const express = require('express'),
+      cors = require('cors'),
       path = require('path'),
       logger = require('morgan'),
       cookieParser = require('cookie-parser'),
@@ -19,6 +20,7 @@ const express = require('express'),
 
       //Express Instance
       app = express();
+      app.use(cors())
 
 //load environment variables with dotenv
 require('dotenv').config()
