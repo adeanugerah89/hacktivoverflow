@@ -1,6 +1,5 @@
 <template lang="html">
   <div class="content">
-    <h1>ini content</h1>
       <div class="panel panel-default">
         <div class="panel-heading">
           <router-link to="/createThread" class="btn btn-primary">Create New Thread</router-link>
@@ -16,7 +15,7 @@
           </thead>
           <tbody>
             <tr v-for="thread in data">
-              <td>{{thread.title}}</td>
+              <td><router-link :to="'Dashboard/detail/' +thread._id">{{thread.title}}</router-link></td>
               <td>{{thread.username}}</td>
               <td>
                 <span><i @click='upVote(thread._id)' class="fa fa-caret-up" aria-hidden="true"></i></span>
@@ -26,6 +25,7 @@
             </tr>
           </tbody>
         </table>
+        <!-- <router-view></router-view> -->
       </div>
   </div>
 </template>

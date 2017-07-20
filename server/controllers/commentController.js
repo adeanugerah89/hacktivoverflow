@@ -1,8 +1,4 @@
 'use strict'
-'use strict'
-'use strict'
-'use strict'
-'use strict'
 
 var CommentThread = require('../models/comment');
 var Thread = require('../models/thread');
@@ -14,7 +10,8 @@ var createComment = (req,res) => {
     thread_id: req.body.thread_id,
     user_id: req.body.user_id,
     username: req.body.username,
-    vote: req.body.vote,
+    upvote:[],
+    downvote:[],
     created_at: new Date()
   },(err,comment) => {
     if (err) {
@@ -63,7 +60,8 @@ var updateComment = (req,res) => {
     data.thread_id = req.body.thread_id || data.thread_id;
     data.user_id = req.body.user_id || data.user_id;
     data.username = req.body.username || data.username;
-    data.vote = req.body.vote || data.vote;
+    data.upvote = [] || data.upvote;
+    data.downvote = [] || data.downvote;
     data.updated_at = new Date();
     
     data.save((err,data) => {
@@ -94,10 +92,54 @@ var getOneComment = (req,res) => {
   })
 }
 
+var upVote = (req,res) => {
+  CommentThread.findById(req.params.id, (err,data) => {
+    if (req.body.user_id){
+      console.log('data upvote'+data.upvote);
+      console.log('data downvote'+data.downvote);
+      var indexUp = data.upvote.indexOf(req.body.user_id)
+      console.log(indexUp);
+      var indexDown = data.downvote.indexOf(req.body.user_id)
+      console.log(indexDown);
+      if (indexUp == -1 && indexDown == -1) {
+        data.upvote.push(req.body.user_id)
+      }else if(indexDown !== -1){
+        data.downvote.splice(indexDown,1)
+      }
+      
+      data.save((err,result) => {
+        if (err) res.send(err)
+        res.send(result)
+      })
+    }
+  })
+}
+
+var downVote = (req,res) => {
+  CommentThread.findById(req.params.id, (err,data) => {
+    if (req.body.user_id){
+      var indexUp = data.upvote.indexOf(req.body.user_id)
+      var indexDown = data.downvote.indexOf(req.body.user_id)
+      if (indexUp == -1 && indexDown == -1) {
+        data.downvote.push(req.body.user_id)
+      }else if(indexDown !== null){
+        data.upvote.splice(indexDown,1)
+      }
+      
+      data.save((err,result) => {
+        if (err) res.send(err)
+        res.send(result)
+      })
+    }
+  })
+}
+
 module.exports = {
   createComment,
   getAllComment,
   updateComment,
   deleteComment,
-  getOneComment
+  getOneComment,
+  upVote,
+  downVote
 }

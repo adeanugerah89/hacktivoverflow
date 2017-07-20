@@ -10,4 +10,7 @@ router.put('/:id',controller.updateComment);
 router.delete('/:id',controller.deleteComment);
 router.get('/:id',controller.getOneComment);
 
+router.put('/:id/upvote',controller.upVote);
+router.put('/:id/downvote',controller.downVote);
+
 module.exports = router;

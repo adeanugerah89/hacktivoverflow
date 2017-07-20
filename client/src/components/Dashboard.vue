@@ -19,11 +19,9 @@
 
 <script>
 import navbar from '@/components/Navbar'
-import Content from '@/components/Content'
 export default {
   components: {
-    navbar,
-    Content
+    navbar
   }
 }
 </script>

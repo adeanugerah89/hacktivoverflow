@@ -6,6 +6,7 @@ import Login from '@/components/Login'
 import Register from '@/components/Register'
 import createThread from '@/components/CreateThread'
 import Content from '@/components/Content'
+import DetailThread from '@/components/DetailThread'
 
 Vue.use(Router)
 
@@ -29,6 +30,11 @@ export default new Router({
         {
           path: '',
           component: Content
+        },
+        {
+          path: 'detail/:id',
+          component: DetailThread,
+          props: true
         },
         {
           path: '/createThread',

@@ -8,7 +8,8 @@ var commentSchema = new Schema({
   thread_id: [{ type: Schema.Types.ObjectId, ref: 'thread' }],
   user_id: [{ type: Schema.Types.ObjectId, ref: 'user' }],
   username: String,
-  vote: Number,
+  upvote: [{ type: Schema.Types.ObjectId, ref: 'user' }],
+  downvote: [{ type: Schema.Types.ObjectId, ref: 'user' }],
   created_at: Date,
   updated_at: Date
 });

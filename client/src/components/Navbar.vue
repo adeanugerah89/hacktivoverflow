@@ -9,7 +9,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Project name</a>
+          <h4 style="color:white;">Welcome {{username}}</h4>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <form class="navbar-form navbar-right">
@@ -28,11 +28,19 @@
 <script type="text/javascript">
 // import Login from '@/components/Login'
   export default {
+    data () {
+      return {
+        username: ''
+      }
+    },
     methods: {
       logout () {
         localStorage.clear()
         this.$router.push('/')
       }
+    },
+    created () {
+      this.username = localStorage.getItem('username')
     }
   }
 </script>
