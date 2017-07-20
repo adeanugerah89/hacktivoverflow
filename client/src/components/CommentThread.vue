@@ -1,15 +1,5 @@
 <template lang="html">
   <div class="comment">
-    <!-- <div class="panel panel-default">
-      <form>
-        <div class="panel-body">
-          <textarea v-model="comment" name="name" rows="8" cols="80"></textarea>
-        </div>
-        <div class="panel-footer">
-          <button @click="createComment()" class="btn btn-info" type="button" name="button">submit</button>
-        </div>
-      </form>
-    </div> -->
     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Comment Thread</button>
     <div id="myModal" class="modal fade" role="dialog">
       <div class="modal-dialog">
@@ -40,7 +30,9 @@ export default {
       username: ''
     }
   },
-  props: ['threadid'],
+  props: [
+    'threadid'
+  ],
   methods: {
     createComment () {
       this.thread_id = this.threadid
@@ -49,6 +41,8 @@ export default {
         thread_id: this.thread_id,
         user_id: localStorage.getItem('id'),
         username: localStorage.getItem('username')
+        // upvote:
+        // downvote:
       })
       .then(res => {
         console.log(res)

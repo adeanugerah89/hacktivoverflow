@@ -12,8 +12,12 @@
       </div> 
       <div class="panel-footer">
        <div class="row">
+         <div class="col-md-8"></div>
          <div class="col-md-4">
-          <!-- <comment :threadid="id"></comment> -->
+           Vote 
+           <span><i @click='upVote()' class="fa fa-caret-up" aria-hidden="true"></i></span>
+           <!-- {{thread.upvote.length - thread.downvote.length}} -->0
+           <span><i @click='downVote()' class="fa fa-caret-down" aria-hidden="true"></i></span>
          </div>
        </div>
       </div>
